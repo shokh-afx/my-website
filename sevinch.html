@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sevinch Bozorova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400;1,6..96,500&family=Figtree:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: tender, bright, hopeful — a young girl's sketchbook on the way to medicine.
+   IDEA: a microscope slide. The page is a specimen journal: life seen through a lens, notes in her own hand.
+   PICTURE: a large living lens in the hero where cells drift and breathe; faint molecules float across the whole page.
+   COLOUR and TYPE: blush petal ground, plum ink, rose + sage stains, lilac support. Bodoni Moda for her name, Figtree for text, Caveat for handwritten notes.
+   LAYOUT: centred hero with the name crossing the lens; subjects as a periodic-table strip; interests as journal plates; a real sequence for the dream; one calm contact band. */
+:root{color-scheme:light dark;
+--bg:light-dark(#FCEEF2,#1F1220);--bg2:light-dark(#F8E1E8,#2A1829);--paper:light-dark(#FFFAFC,#2E1B2D);
+--ink:light-dark(#3A1C35,#F7E6EE);--soft:light-dark(#7A5670,#C9A9BD);
+--rose:light-dark(#D45E87,#F08BAE);--sage:light-dark(#6FA58B,#8FCCAE);--lilac:light-dark(#A48BDB,#C3B2F0);
+--line:light-dark(#EBC9D5,#4A2E47);--glass:light-dark(rgba(255,250,252,.72),rgba(46,27,45,.72))}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Figtree,system-ui,sans-serif;overflow-x:clip}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,header,footer{position:relative;z-index:1}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto}
+.band{padding:clamp(48px,7vw,104px) max(5vw,18px)}
+h2{font:500 clamp(34px,4.4vw,52px)/1.05 "Bodoni Moda",Georgia,serif;margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em}
+.lead{color:var(--soft);max-width:60ch;margin:0 0 36px}
+.hand{font-family:Caveat,cursive;font-weight:600;color:var(--rose);font-size:24px;line-height:1.1}
+
+/* nav */
+nav{position:sticky;top:0;z-index:5;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:8px;padding:10px max(5vw,18px);flex-wrap:wrap}
+.mark{font:italic 500 22px "Bodoni Moda",serif;text-decoration:none;margin-right:auto;padding:6px 0}
+nav ul{display:flex;flex-wrap:wrap;gap:2px;list-style:none;margin:0;padding:0}
+nav ul a{display:block;padding:10px 12px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;color:var(--soft)}
+nav ul a:hover{color:var(--ink);background:var(--bg2)}
+
+/* hero */
+.hero{min-height:calc(100svh - 62px);display:grid;place-items:center;text-align:center;padding:40px max(5vw,18px) 64px}
+.stage{position:relative;width:min(560px,86vw);aspect-ratio:1;display:grid;place-items:center}
+.lens{position:absolute;inset:0;border-radius:50%;overflow:hidden;
+background:radial-gradient(circle at 38% 32%,light-dark(#fff,#3a2238) 0,light-dark(#FDE9F0,#2B1829) 55%,light-dark(#F4CFDC,#24142a) 100%);
+box-shadow:0 0 0 14px var(--paper),0 0 0 15px var(--line),0 40px 90px -30px light-dark(rgba(180,70,110,.45),rgba(0,0,0,.6))}
+.lens canvas{width:100%;height:100%;display:block}
+.lens::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.55),transparent 32%);pointer-events:none}
+.ring{position:absolute;inset:-34px;border-radius:50%;border:1px dashed var(--line);animation:spin 80s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.name{position:relative;z-index:2;margin:0;font:400 clamp(54px,11vw,138px)/.9 "Bodoni Moda",Georgia,serif;letter-spacing:-.025em;text-wrap:balance}
+.name i{display:block;font-weight:500;font-size:.62em;margin-top:.12em;color:var(--rose)}
+.note1{position:absolute;right:-10px;top:6%;transform:rotate(8deg);z-index:2}
+.note2{position:absolute;left:-18px;bottom:10%;transform:rotate(-7deg);z-index:2;color:var(--sage)}
+.tag{margin:44px auto 0;max-width:46ch;font-size:clamp(17px,1.6vw,20px)}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:600;text-decoration:none;border:1.5px solid var(--ink);transition:transform .2s,background .2s}
+.btn.main{background:var(--ink);color:var(--bg)}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:18px;height:18px}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,72px);align-items:center}
+.about p{max-width:58ch}
+.slide{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:28px 30px;transform:rotate(1.5deg);box-shadow:0 24px 50px -28px light-dark(rgba(150,60,100,.35),rgba(0,0,0,.5))}
+.slide dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:12px 18px}
+.slide dt{color:var(--soft);font-size:15px}.slide dd{margin:0;font-weight:600}
+
+/* periodic */
+.table{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.el{appearance:none;font:inherit;color:inherit;text-align:left;cursor:pointer;background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:16px 16px 14px;aspect-ratio:1/1.08;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .25s,transform .25s,background .25s}
+.el .sym{font:500 clamp(40px,5vw,64px)/1 "Bodoni Moda",serif}
+.el .nm{font-weight:600;font-size:15px}
+.el .ic{width:26px;height:26px;color:var(--c)}
+.el:hover{transform:translateY(-3px)}
+.el[aria-selected=true]{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,var(--paper))}
+.el[aria-selected=true] .sym{color:var(--c)}
+.detail{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:24px 28px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:center}
+.detail .big{font:italic 500 64px/1 "Bodoni Moda",serif;color:var(--c,var(--rose));width:1.6em;text-align:center}
+.detail h3{margin:0 0 6px;font-size:20px}.detail p{margin:0;color:var(--soft);max-width:62ch}
+.detail.swap{animation:pop .45s ease}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}}
+
+/* interests */
+.plates{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:18px}
+.plate{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:28px;position:relative;overflow:hidden}
+.plate h3{font:500 28px/1.1 "Bodoni Moda",serif;margin:0 0 8px}
+.plate p{color:var(--soft);margin:0 0 18px}
+.hello{font:italic 500 clamp(44px,6vw,72px)/1.1 "Bodoni Moda",serif;color:var(--lilac);min-height:1.2em;transition:opacity .5s,transform .5s}
+.hello.out{opacity:0;transform:translateY(-10px)}
+.lang{color:var(--soft);font-size:15px;min-height:1.6em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{padding:6px 14px;border-radius:999px;background:var(--bg2);font-size:14px;font-weight:500}
+.med{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center;background:linear-gradient(135deg,color-mix(in srgb,var(--sage) 16%,var(--paper)),var(--paper))}
+.med svg{width:100%;max-height:220px}
+/* sketch pad */
+.pad{position:relative;height:280px;border-radius:18px;background:light-dark(#fff,#24142a);border:1px dashed var(--line);touch-action:none;overflow:hidden}
+.pad canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
+.pad .hint{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;color:var(--soft);font-family:Caveat,cursive;font-size:26px;transition:opacity .3s}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.sw{width:34px;height:34px;border-radius:50%;border:2px solid var(--paper);box-shadow:0 0 0 1.5px var(--line);cursor:pointer;padding:0}
+.sw[aria-pressed=true]{box-shadow:0 0 0 2.5px var(--ink)}
+.tb{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font:500 14px Figtree,sans-serif;cursor:pointer}
+.tb:hover{border-color:var(--ink)}
+.tools input[type=range]{width:110px;accent-color:var(--rose)}
+
+/* dream path */
+.path{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
+.path::before{content:"";position:absolute;left:12px;right:12px;top:15px;height:2px;background:repeating-linear-gradient(90deg,var(--rose) 0 8px,transparent 8px 14px)}
+.path li{position:relative;padding:44px 18px 0 0}
+.path li::before{content:"";position:absolute;top:6px;left:0;width:20px;height:20px;border-radius:50%;background:var(--paper);border:3px solid var(--rose)}
+.path li.now::before{background:var(--rose);box-shadow:0 0 0 8px color-mix(in srgb,var(--rose) 22%,transparent)}
+.path li:last-child::before{border-color:var(--sage);background:var(--sage)}
+.path .when{font-family:Caveat,cursive;font-size:24px;color:var(--rose)}
+.path h3{margin:2px 0 6px;font-size:19px}.path p{margin:0;color:var(--soft);font-size:15.5px}
+.quote{margin:56px 0 0;font:italic 400 clamp(22px,2.6vw,30px)/1.35 "Bodoni Moda",serif;max-width:36ch;text-wrap:balance}
+.quote small{display:block;font:500 15px Figtree,sans-serif;color:var(--soft);margin-top:10px;font-style:normal}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:36px;padding:clamp(32px,6vw,72px);display:grid;grid-template-columns:minmax(0,1.2fr) auto;gap:28px;align-items:center}
+.contact h2{color:var(--bg)}.contact p{color:color-mix(in srgb,var(--bg) 75%,var(--ink));margin:0;max-width:48ch}
+.tg{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 26px;border-radius:999px;background:var(--rose);color:#fff;font-weight:600;font-size:18px;text-decoration:none;transition:transform .2s}
+.tg:hover{transform:scale(1.04)}.tg svg{width:22px;height:22px}
+.handle{display:block;margin-top:10px;text-align:center;font-size:15px;opacity:.8}
+footer{text-align:center;color:var(--soft);font-size:14px;padding:28px 18px 40px}
+
+@media(max-width:860px){.table{grid-template-columns:repeat(3,minmax(0,1fr))}.about,.plates,.med,.contact{grid-template-columns:minmax(0,1fr)}.path{grid-template-columns:minmax(0,1fr) minmax(0,1fr);row-gap:28px}.path::before{display:none}}
+@media(max-width:600px){body{font-size:16px}.table{grid-template-columns:repeat(2,minmax(0,1fr))}.el{aspect-ratio:auto;min-height:120px}.detail{grid-template-columns:minmax(0,1fr)}.detail .big{text-align:left}.path{grid-template-columns:minmax(0,1fr)}.note1,.note2{font-size:19px}.note1{right:0;top:-2%}.note2{left:0;bottom:2%}.ring{inset:-18px}nav ul a{padding:8px 9px;font-size:14px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<nav aria-label="Asosiy menyu"><div class="wrap">
+  <a class="mark" href="#top">Sevinch B.</a>
+  <ul><li><a href="#men">Men haqimda</a></li><li><a href="#fanlar">Fanlar</a></li><li><a href="#qiziqish">Qiziqishlar</a></li><li><a href="#orzu">Orzuim</a></li><li><a href="#aloqa">Aloqa</a></li></ul>
+</div></nav>
+
+<header class="hero" id="top">
+  <div>
+    <div class="stage">
+      <div class="ring" aria-hidden="true"></div>
+      <div class="lens" aria-hidden="true"><canvas id="cells"></canvas></div>
+      <span class="hand note1" aria-hidden="true">mikroskop ostida — hayot</span>
+      <span class="hand note2" aria-hidden="true">bo‘lajak shifokor ♡</span>
+      <h1 class="name">Sevinch<i>Bozorova</i></h1>
+    </div>
+    <p class="tag">Maktab o‘quvchisi. Kimyo va biologiyani sevaman, tillarni o‘rganaman, bo‘sh vaqtimda rasm chizaman — va bir kun shifokor bo‘laman.</p>
+    <div class="cta">
+      <a class="btn main" href="https://t.me/khsnvna_oo7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.6 19.8c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6 13.3l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6l19.2-7.4c.9-.3 1.7.2 1.4 1.5z"/></svg>Telegramda yozish</a>
+      <a class="btn" href="#men">Men bilan tanishing</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="band" id="men"><div class="wrap about">
+  <div>
+    <h2>Salom, men Sevinchman</h2>
+    <p>Men hamma narsaning “ichida nima bor?” degan savoliga javob izlashni yaxshi ko‘raman. Bir tomchi suvda yashaydigan mitti hujayralar, probirkada rangini o‘zgartiradigan eritmalar, inson tanasining murakkab va ajoyib tuzilishi — bularning hammasi meni hayratga soladi.</p>
+    <p>Shuning uchun maqsadim aniq: tibbiyot oliygohiga o‘qishga kirish va odamlarga shifo beradigan shifokor bo‘lish. Unga qadar har kuni o‘qiyman, izlanaman va o‘zimni turli sohalarda sinab ko‘raman.</p>
+  </div>
+  <div class="slide" aria-label="Qisqacha ma’lumot">
+    <p class="hand" style="margin:0 0 16px">mening “preparatim”</p>
+    <dl>
+      <dt>Ism</dt><dd>Sevinch Bozorova</dd>
+      <dt>Hozir</dt><dd>Maktab o‘quvchisi</dd>
+      <dt>Sevimli fanlar</dt><dd>Kimyo, biologiya</dd>
+      <dt>Qiziqishlar</dt><dd>Tillar, rasm chizish</dd>
+      <dt>Orzu</dt><dd>Shifokor bo‘lish</dd>
+      <dt>Telegram</dt><dd><a href="https://t.me/khsnvna_oo7" target="_blank" rel="noopener">@khsnvna_oo7</a></dd>
+    </dl>
+  </div>
+</div></section>
+
+<section class="band" id="fanlar" style="background:color-mix(in srgb,var(--bg2) 70%,transparent)"><div class="wrap">
+  <h2>O‘qiyotgan fanlarim</h2>
+  <p class="lead">Mening shaxsiy “davriy jadvalim”. Har bir fan — kelajagimning bir elementi. Batafsil ko‘rish uchun bosing.</p>
+  <div class="table" role="tablist" aria-label="Fanlar" id="table"></div>
+  <div class="detail" id="detail" role="tabpanel" aria-live="polite"></div>
+</div></section>
+
+<section class="band" id="qiziqish"><div class="wrap">
+  <h2>Nimalarga qiziqaman</h2>
+  <p class="lead">Darsdan tashqari ham dunyom keng: tillar, ranglar va inson salomatligi.</p>
+  <div class="plates">
+    <article class="plate">
+      <h3>Tillar</h3>
+      <p>Har bir til — yangi dunyoga ochilgan eshik. Turli xalqlarning so‘zlari va ohangini o‘rganish menga zavq beradi.</p>
+      <div class="hello" id="hello">Salom</div>
+      <div class="lang" id="lang">o‘zbekcha</div>
+      <div class="chips"><span class="chip">O‘zbek tili</span><span class="chip">Ingliz tili</span><span class="chip">Rus tili</span><span class="chip">Lotincha atamalar</span></div>
+    </article>
+    <article class="plate">
+      <h3>Rasm chizish</h3>
+      <p>Qalam va bo‘yoqlar — o‘zimni ifoda etish usulim. Mana, siz ham shu yerda biror narsa chizib ko‘ring:</p>
+      <div class="pad" id="pad"><canvas id="draw" aria-label="Chizish maydoni"></canvas><div class="hint" id="hint">shu yerga chizing…</div></div>
+      <div class="tools" id="tools">
+        <button class="tb" id="undo" type="button">Orqaga qaytarish</button>
+        <button class="tb" id="clear" type="button">Tozalash</button>
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--soft)">Qalinlik <input type="range" id="size" min="2" max="24" value="6"></label>
+      </div>
+    </article>
+    <article class="plate med">
+      <div>
+        <h3>Tibbiyot</h3>
+        <p>Inson tanasi — eng mukammal mexanizm. Yurak qanday uradi, qon qanday aylanadi, dori qanday ta’sir qiladi — men bularni chuqur bilishni istayman. Kimyo va biologiyaga bo‘lgan muhabbatim aynan shu orzuga olib boradi.</p>
+        <div class="chips"><span class="chip">Anatomiya</span><span class="chip">Hujayra biologiyasi</span><span class="chip">Organik kimyo</span><span class="chip">Birinchi yordam</span></div>
+      </div>
+      <svg viewBox="0 0 400 200" aria-hidden="true">
+        <path d="M0 110 H110 l18-40 22 90 26-120 22 100 14-30 H400" fill="none" stroke="var(--rose)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="900" stroke-dashoffset="900"><animate attributeName="stroke-dashoffset" values="900;0;0;-900" keyTimes="0;.45;.6;1" dur="3.2s" repeatCount="indefinite"/></path>
+        <path d="M232 52c-12-20-44-14-44 12 0 22 44 46 44 46s44-24 44-46c0-26-32-32-44-12z" fill="color-mix(in srgb,var(--rose) 18%,transparent)" stroke="var(--rose)" stroke-width="2" transform="translate(70 -24) scale(.7)"><animateTransform attributeName="transform" type="scale" additive="sum" values="1;1.08;1;1.05;1" dur="1.6s" repeatCount="indefinite"/></path>
+      </svg>
+    </article>
+  </div>
+</div></section>
+
+<section class="band" id="orzu" style="background:color-mix(in srgb,var(--bg2) 70%,transparent)"><div class="wrap">
+  <h2>Orzuim sari yo‘l</h2>
+  <p class="lead">Shifokor bo‘lish — uzoq, ammo juda chiroyli yo‘l. Men uni qadamma-qadam bosib o‘taman.</p>
+  <ol class="path">
+    <li class="now"><span class="when">hozir</span><h3>Maktab</h3><p>Kimyo va biologiyaga alohida e’tibor, matematika, ona tili va tarixda mustahkam bilim.</p></li>
+    <li><span class="when">keyingi qadam</span><h3>Abituriyent</h3><p>Tibbiyot oliygohiga kirish imtihonlariga puxta tayyorgarlik.</p></li>
+    <li><span class="when">talabalik</span><h3>Tibbiyot universiteti</h3><p>Anatomiya, fiziologiya, farmakologiya va amaliyot.</p></li>
+    <li><span class="when">orzu</span><h3>Shifokor</h3><p>Odamlarga shifo berish, ularning sog‘lig‘i uchun xizmat qilish.</p></li>
+  </ol>
+  <p class="quote">“Tabib uch qurolga ega: so‘z, o‘simlik va pichoq.”<small>Abu Ali ibn Sino — yurtdoshim va ilhom manbaim</small></p>
+</div></section>
+
+<section class="band" id="aloqa"><div class="wrap contact">
+  <div>
+    <h2>Keling, tanishamiz</h2>
+    <p>Savollaringiz, takliflaringiz bo‘lsa yoki shunchaki salom bermoqchi bo‘lsangiz — Telegramda yozing, albatta javob beraman.</p>
+  </div>
+  <div>
+    <a class="tg" href="https://t.me/khsnvna_oo7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.6 19.8c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6 13.3l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6l19.2-7.4c.9-.3 1.7.2 1.4 1.5z"/></svg>Telegramda yozish</a>
+    <span class="handle">@khsnvna_oo7</span>
+  </div>
+</div></section>
+</main>
+<footer>© 2026 Sevinch Bozorova. Mehr bilan yaratilgan.</footer>
+
+<script>
+{
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const probe = document.createElement('i'); probe.style.display='none'; document.body.appendChild(probe);
+let pal = {};
+function readPal(){
+  ['--rose','--lilac','--sage','--soft'].forEach(n=>{probe.style.color=`var(${n})`;pal[n]=(getComputedStyle(probe).color.match(/[\d.]+/g)||[200,100,140]).slice(0,3).map(Number)});
+  if (reduce && readPal.ready){drawCells(0);drawBg(0)}
+}
+readPal();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',readPal);
+const themeMO = new MutationObserver(readPal); themeMO.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+const css = n => pal[n];
+const isDark = () => document.documentElement.dataset.theme === 'dark' || (document.documentElement.dataset.theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+
+/* ---------- periodic table of subjects ---------- */
+const ic = {
+  flask:'<path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21.5h11.6a2 2 0 0 0 1.7-3L14 9V3M7 15h10"/>',
+  leaf:'<path d="M5 19C5 10 11 4 20 4c0 9-6 15-15 15zM5 19l8-8"/>',
+  book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5M8 7h7"/>',
+  sigma:'<path d="M18 5H6l6 7-6 7h12"/>',
+  col:'<path d="M3 21h18M5 21V10M10 21V10M14 21V10M19 21V10M2 10h20L12 3z"/>'
+};
+const subjects = [
+  {s:'Ki',n:'Kimyo',c:'--rose',i:'flask',t:'Moddalar qanday o‘zgarishini kuzatish men uchun sehrdek. Har bir dori-darmon ortida aynan kimyo turadi — shuning uchun bu fan tibbiyotga yo‘limning kaliti.'},
+  {s:'Bi',n:'Biologiya',c:'--sage',i:'leaf',t:'Hujayradan tortib butun organizmgacha — tirik tana qanday ishlashini o‘rganaman. Biologiya shifokorlik kasbining poydevori.'},
+  {s:'Ot',n:'Ona tili',c:'--lilac',i:'book',t:'So‘zni to‘g‘ri va chiroyli ishlatish — fikrni aniq yetkazish demak. Yaxshi shifokor bemor bilan iliq va tushunarli gaplasha olishi kerak.'},
+  {s:'Ma',n:'Matematika',c:'--rose',i:'sigma',t:'Mantiq va aniqlik maktabi. Dozalarni hisoblash, tahlil natijalarini tushunish — tibbiyotda ham matematika har qadamda kerak.'},
+  {s:'Ta',n:'Tarix',c:'--sage',i:'col',t:'Men Ibn Sino kabi buyuk tabiblar yurtida yashayman. O‘tmishni bilish kelajakka ishonch va ilhom beradi.'}
+];
+const table = document.getElementById('table'), detail = document.getElementById('detail');
+table.innerHTML = subjects.map((x,k)=>`<button class="el" role="tab" id="t${k}" aria-selected="false" aria-controls="detail" style="--c:var(${x.c})"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic[x.i]}</svg><span class="sym">${x.s}</span><span class="nm">${x.n}</span></button>`).join('');
+const tabs = [...table.children];
+function pick(k, focus){
+  tabs.forEach((b,j)=>{b.setAttribute('aria-selected', j===k); b.tabIndex = j===k?0:-1});
+  const x = subjects[k];
+  detail.style.setProperty('--c', `var(${x.c})`);
+  detail.innerHTML = `<div class="big">${x.s}</div><div><h3>${x.n}</h3><p>${x.t}</p></div>`;
+  detail.classList.remove('swap'); void detail.offsetWidth; detail.classList.add('swap');
+  if (focus) tabs[k].focus();
+}
+tabs.forEach((b,k)=>{
+  b.addEventListener('click',()=>pick(k));
+  b.addEventListener('keydown',e=>{
+    if (e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();pick((k+1)%tabs.length,true)}
+    if (e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();pick((k+tabs.length-1)%tabs.length,true)}
+  });
+});
+pick(0);
+
+/* ---------- greetings ---------- */
+const hellos = [['Salom','o‘zbekcha'],['Hello','inglizcha'],['Привет','ruscha'],['Merhaba','turkcha'],['안녕하세요','koreyscha'],['Bonjour','fransuzcha'],['Hola','ispancha'],['こんにちは','yaponcha']];
+const hEl = document.getElementById('hello'), lEl = document.getElementById('lang');
+let hi = 0;
+if (!reduce) setInterval(()=>{
+  hEl.classList.add('out');
+  setTimeout(()=>{hi=(hi+1)%hellos.length;hEl.textContent=hellos[hi][0];lEl.textContent=hellos[hi][1];hEl.classList.remove('out')},500);
+},2600);
+
+/* ---------- sketch pad ---------- */
+const pad = document.getElementById('pad'), dc = document.getElementById('draw'), dx = dc.getContext('2d');
+const hint = document.getElementById('hint'), tools = document.getElementById('tools'), sizeIn = document.getElementById('size');
+const colors = [['#D45E87','pushti'],['#A48BDB','lavanda'],['#6FA58B','yashil'],['#E8A33D','oltin'],['#3A1C35','olxo‘ri']];
+let color = colors[0][0], drawing = false, last = null, history = [];
+tools.insertAdjacentHTML('afterbegin', colors.map((c,k)=>`<button class="sw" type="button" aria-label="${c[1]} rang" aria-pressed="${k===0}" data-c="${c[0]}" style="background:${c[0]}"></button>`).join(''));
+tools.querySelectorAll('.sw').forEach(b=>b.addEventListener('click',()=>{
+  color=b.dataset.c; tools.querySelectorAll('.sw').forEach(o=>o.setAttribute('aria-pressed', o===b));
+}));
+function sizePad(){
+  const r = pad.getBoundingClientRect(), d = devicePixelRatio||1;
+  let snap = null; if (dc.width) snap = dc.toDataURL();
+  dc.width = r.width*d; dc.height = r.height*d; dx.setTransform(d,0,0,d,0,0);
+  if (snap && history.length){const im=new Image();im.onload=()=>dx.drawImage(im,0,0,r.width,r.height);im.src=snap}
+}
+const padRO = new ResizeObserver(sizePad); padRO.observe(pad);
+const pos = e => {const r=dc.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top}};
+dc.addEventListener('pointerdown',e=>{
+  drawing=true; dc.setPointerCapture(e.pointerId); last=pos(e);
+  history.push(dx.getImageData(0,0,dc.width,dc.height)); if(history.length>30)history.shift();
+  hint.style.opacity=0;
+  dx.fillStyle=color; dx.beginPath(); dx.arc(last.x,last.y,sizeIn.value/2,0,7); dx.fill();
+});
+dc.addEventListener('pointermove',e=>{
+  if(!drawing)return; const p=pos(e);
+  dx.strokeStyle=color; dx.lineWidth=+sizeIn.value*(e.pressure&&e.pointerType==='pen'?e.pressure*1.6:1); dx.lineCap=dx.lineJoin='round';
+  dx.beginPath(); dx.moveTo(last.x,last.y); dx.lineTo(p.x,p.y); dx.stroke(); last=p;
+});
+['pointerup','pointercancel','pointerleave'].forEach(t=>dc.addEventListener(t,()=>drawing=false));
+document.getElementById('undo').addEventListener('click',()=>{
+  if(!history.length)return; dx.putImageData(history.pop(),0,0);
+  if(!history.length)hint.style.opacity=1;
+});
+document.getElementById('clear').addEventListener('click',()=>{
+  history.push(dx.getImageData(0,0,dc.width,dc.height));
+  dx.clearRect(0,0,dc.width,dc.height); hint.style.opacity=1;
+});
+
+/* ---------- living cells in the lens ---------- */
+const cc = document.getElementById('cells'), cx = cc.getContext('2d');
+let CW=0, CH=0;
+const lensRO = new ResizeObserver(()=>{const r=cc.getBoundingClientRect(),d=devicePixelRatio||1;CW=r.width;CH=r.height;cc.width=CW*d;cc.height=CH*d;cx.setTransform(d,0,0,d,0,0);if(reduce)drawCells(0)});
+lensRO.observe(cc);
+const tones = ['--rose','--lilac','--sage','--rose','--lilac'];
+const cells = Array.from({length:11},(_,k)=>({
+  x:Math.random(), y:Math.random(), r:.07+Math.random()*.08,
+  vx:(Math.random()-.5)*.00022, vy:(Math.random()-.5)*.00022,
+  ph:Math.random()*6.28, tone:tones[k%tones.length],
+  org:Array.from({length:4},()=>({a:Math.random()*6.28,d:.35+Math.random()*.4,s:.08+Math.random()*.07}))
+}));
+const dots = Array.from({length:40},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.8+.6,v:Math.random()*.0004+.0001,ph:Math.random()*6.28}));
+function hexA(c,a){return `rgba(${c[0]},${c[1]},${c[2]},${a})`}
+function blob(x,y,r,t,ph){
+  cx.beginPath();
+  for(let i=0;i<=40;i++){const a=i/40*6.283;const w=1+Math.sin(a*3+t*.0011+ph)*.05+Math.sin(a*5-t*.0007+ph)*.03;const px=x+Math.cos(a)*r*w,py=y+Math.sin(a)*r*w;i?cx.lineTo(px,py):cx.moveTo(px,py)}
+  cx.closePath();
+}
+function drawCells(t){
+  if(!CW)return;
+  cx.clearRect(0,0,CW,CH);
+  const S=Math.min(CW,CH);
+  dots.forEach(d=>{
+    if(!reduce){d.y-=d.v;d.x+=Math.sin(t*.001+d.ph)*.0003;if(d.y<-.02)d.y=1.02}
+    cx.fillStyle=hexA(css('--soft'),.35);cx.beginPath();cx.arc(d.x*CW,d.y*CH,d.r,0,7);cx.fill();
+  });
+  cells.forEach(c=>{
+    if(!reduce){c.x+=c.vx;c.y+=c.vy;if(c.x<-.1||c.x>1.1)c.vx*=-1;if(c.y<-.1||c.y>1.1)c.vy*=-1}
+    const col=css(c.tone), x=c.x*CW, y=c.y*CH, r=c.r*S*(1+Math.sin(t*.0012+c.ph)*.03);
+    const g=cx.createRadialGradient(x-r*.3,y-r*.3,r*.1,x,y,r);
+    g.addColorStop(0,hexA(col,.10));g.addColorStop(.75,hexA(col,.22));g.addColorStop(1,hexA(col,.42));
+    blob(x,y,r,t,c.ph);cx.fillStyle=g;cx.fill();cx.lineWidth=1.6;cx.strokeStyle=hexA(col,.7);cx.stroke();
+    c.org.forEach(o=>{const a=o.a+t*.0002;cx.fillStyle=hexA(col,.35);cx.beginPath();cx.ellipse(x+Math.cos(a)*r*o.d,y+Math.sin(a)*r*o.d,r*o.s,r*o.s*.6,a,0,7);cx.fill()});
+    const nx=x+Math.sin(t*.0008+c.ph)*r*.08, ny=y+Math.cos(t*.0008+c.ph)*r*.08;
+    const ng=cx.createRadialGradient(nx-r*.08,ny-r*.08,1,nx,ny,r*.32);
+    ng.addColorStop(0,hexA(col,.55));ng.addColorStop(1,hexA(col,.85));
+    cx.fillStyle=ng;cx.beginPath();cx.arc(nx,ny,r*.3,0,7);cx.fill();
+    cx.fillStyle='rgba(255,255,255,.5)';cx.beginPath();cx.arc(nx-r*.08,ny-r*.09,r*.06,0,7);cx.fill();
+  });
+}
+
+/* ---------- floating molecules behind the page ---------- */
+const bg = document.getElementById('bg'), bx = bg.getContext('2d');
+let BW=0, BH=0, mx=0, my=0;
+function sizeBg(){const d=Math.min(devicePixelRatio||1,2);BW=innerWidth;BH=innerHeight;bg.width=BW*d;bg.height=BH*d;bx.setTransform(d,0,0,d,0,0);if(reduce)drawBg(0)}
+addEventListener('resize',sizeBg);
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+const kinds=['hex','hex','chain','dna'];
+const mols=Array.from({length:14},(_,k)=>({x:Math.random(),y:Math.random(),s:16+Math.random()*22,rot:Math.random()*6.28,vr:(Math.random()-.5)*.0003,vy:-(Math.random()*.00006+.00002),z:.3+Math.random()*.7,k:kinds[k%kinds.length],tone:tones[k%tones.length]}));
+function drawMol(m,t){
+  const col=css(m.tone), a=isDark()?.32:.28;
+  bx.save();bx.translate(m.x*BW+mx*40*m.z,m.y*BH+my*40*m.z);bx.rotate(m.rot);bx.strokeStyle=hexA(col,a);bx.fillStyle=hexA(col,a+.1);bx.lineWidth=1.4;
+  const s=m.s*m.z+8;
+  if(m.k==='hex'){
+    const P=[...Array(6)].map((_,i)=>[Math.cos(i*Math.PI/3)*s,Math.sin(i*Math.PI/3)*s]);
+    bx.beginPath();P.forEach((p,i)=>i?bx.lineTo(...p):bx.moveTo(...p));bx.closePath();bx.stroke();
+    bx.beginPath();bx.arc(0,0,s*.55,0,7);bx.stroke();
+    P.forEach(p=>{bx.beginPath();bx.arc(p[0],p[1],2.6,0,7);bx.fill()});
+    bx.beginPath();bx.moveTo(P[0][0],P[0][1]);bx.lineTo(P[0][0]+s*.8,P[0][1]);bx.stroke();
+    bx.beginPath();bx.arc(P[0][0]+s*.8,P[0][1],4,0,7);bx.fill();
+  } else if(m.k==='chain'){
+    const pts=[[-s*1.4,0],[-s*.7,-s*.4],[0,0],[s*.7,-s*.4],[s*1.4,0]];
+    bx.beginPath();pts.forEach((p,i)=>i?bx.lineTo(...p):bx.moveTo(...p));bx.stroke();
+    pts.forEach((p,i)=>{bx.beginPath();bx.arc(p[0],p[1],i%2?3.5:2.5,0,7);bx.fill()});
+  } else {
+    for(let i=0;i<=12;i++){const y=(i-6)*s*.22, ph=i*.55+t*.0006, x1=Math.sin(ph)*s*.6, x2=-x1;
+      bx.beginPath();bx.moveTo(x1,y);bx.lineTo(x2,y);bx.globalAlpha=.6;bx.stroke();bx.globalAlpha=1;
+      bx.beginPath();bx.arc(x1,y,2.2,0,7);bx.fill();bx.beginPath();bx.arc(x2,y,2.2,0,7);bx.fill()}
+  }
+  bx.restore();
+}
+function drawBg(t){
+  bx.clearRect(0,0,BW,BH);
+  mols.forEach(m=>{if(!reduce){m.rot+=m.vr;m.y+=m.vy;if(m.y<-.08){m.y=1.08;m.x=Math.random()}}drawMol(m,t)});
+}
+sizeBg();
+readPal.ready = true;
+if(!reduce){
+  let lensVisible=true;
+  const io=new IntersectionObserver(es=>lensVisible=es[0].isIntersecting); io.observe(cc);
+  const loop=t=>{if(lensVisible)drawCells(t);drawBg(t);requestAnimationFrame(loop)};
+  requestAnimationFrame(loop);
+} else { drawCells(0); drawBg(0); }
+}
+</script>
+</body>
+</html>
